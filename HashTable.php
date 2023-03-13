@@ -8,17 +8,32 @@ class HashTable
     /*create hash table by using chining approach*/
 
     public $table;
-    private $capacity;
+    public $capacity;
 
     public function __construct($capacity,array $table = [])
     {
         $this->table = $table;
-        $this->capacity = $capacity;
+        $this->setCapacity($capacity);
     }
 
     public function setCapacity($size)
     {
-        $this->capacity = $size;
+        $this->capacity = $this->capacityPowerOf2($size)? ++$size : $size;
+    }
+
+    public function capacityPowerOf2($length) :bool
+    {
+        if($length === 0)
+            return false;
+        else {
+            while(true) {
+                if($length == 2)
+                    return true;
+                elseif($length % 2 > 0)
+                    return false;
+                $length /= 2;
+            }
+        }
     }
 
     public function hash($key) :int
@@ -70,12 +85,14 @@ class HashTable
     }
 }
 
-$hash = new HashTable(30,[]);
+$hash = new HashTable(15,[]);
+var_dump($hash->capacity);
+/*
 $hash->insert('1234567890','ahmed');
 $hash->insert('1234567890','ahmed');
 $hash->insert('1234567890','ahmed');
 $hash->insert('1234567891','sayed');
 $hash->insert('1234567891','mohamed');
 $hash->insert('1234567892','mohsen');
-$hash->traverse();
+$hash->traverse();*/
 ?>
