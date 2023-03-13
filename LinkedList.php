@@ -125,6 +125,9 @@ class linkedList
         }
     }
 
+    /*
+    *get value by key if not exist will not return null
+    */
     public function getByKey($key)
     {
         $cursor = $this->head;
@@ -133,7 +136,7 @@ class linkedList
                 return $cursor->getValue();
             $cursor = $cursor->getNext();
         }
-        return -1;
+        return null;
     }
 
     public function exist($key) :bool
@@ -188,7 +191,8 @@ class linkedList
     }
     
 }
-$linkedList = new linkedList();
+
+/*$linkedList = new linkedList();
 $linkedList->addLast('age',30);
 $linkedList->addLast('name','sayed');
 $linkedList->addLast('salary',30000);
@@ -201,6 +205,6 @@ echo $linkedList->count().'<br>';
 $linkedList->delete('name');
 echo $linkedList->count().'<br>';
 $linkedList->traverse();
-echo $linkedList->exist('salary')?'yes':'no';
+echo $linkedList->exist('salary')?'yes':'no';*/
 
 ?>
