@@ -126,6 +126,23 @@ class BinaryTree
         $this->preOrderRecursive($current->right,$arr);
     }
 
+    public function inOrderTraverse()
+    {
+        $arr = [];
+        $this->inOrderRecursive($this->root,$arr);
+        var_dump($arr);
+    }
+
+    private function inOrderRecursive(?TreeNode $current,array &$arr)
+    {
+        if($current === null)
+            return;
+
+        $this->inOrderRecursive($current->left,$arr);
+        $arr[] = $current->data;
+        $this->inOrderRecursive($current->right,$arr);
+    }
+
 }
 //date_default_timezone_set('Africa/Cairo');
 //echo date('Y-m-d H:i:s');
@@ -137,6 +154,8 @@ $tree->add(6);
 $tree->add(9);
 $tree->add(11);
 $tree->preOrderTraverse();
+echo '<br>';
+$tree->inOrderTraverse();
 //$tree->delete(10);
 //var_dump($tree->root);
 
