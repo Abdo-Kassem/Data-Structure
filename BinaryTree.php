@@ -143,6 +143,8 @@ class BinaryTree
         $this->inOrderRecursive($current->right,$arr);
     }
 
+    
+
 }
 //date_default_timezone_set('Africa/Cairo');
 //echo date('Y-m-d H:i:s');
