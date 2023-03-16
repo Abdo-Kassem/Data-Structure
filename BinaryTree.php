@@ -56,13 +56,8 @@ class BinaryTree
                 }else if($current->right === null) {
                     $this->root->left = $current->left;
                     $current->left = null;
-                }else {
-                    //get smallest value in right 
-                    $smallestValue = $this->smalestItemRecursive($current->right);
-                    $current->data = $smallestValue;
-                    $this->deleteRecursive($current,$current->right,$smallestValue);
                 }
-                return true;
+                
             }else {
                 if($current->left  === null && $current->right === null) {
                     $prev->left = $prev->left === $current? null : $prev->left;
@@ -73,14 +68,15 @@ class BinaryTree
                 }else if($current->right === null) {
                     $prev->left = $current->left;
                     $current->left = null;
-                }else {
-                    //get smallest value in right 
-                    $smallestValue = $this->smalestItemRecursive($current->right);
-                    $current->data = $smallestValue;
-                    $this->deleteRecursive($current,$current->right,$smallestValue);
                 }
-                return true;
             }
+            if($current->left !== null && $current->right !== null) {
+                //get smallest value in right 
+                $smallestValue = $this->smalestItemRecursive($current->right);
+                $current->data = $smallestValue;
+                $this->deleteRecursive($current,$current->right,$smallestValue);
+            }
+            return true;
             
         }else if($item > $current->data) {
             return  $this->deleteRecursive($current ,$current->right,$item);
