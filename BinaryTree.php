@@ -77,7 +77,7 @@ class BinaryTree
                 $this->deleteRecursive($current,$current->right,$smallestValue);
             }
             return true;
-            
+
         }else if($item > $current->data) {
             return  $this->deleteRecursive($current ,$current->right,$item);
         }else {
@@ -107,6 +107,23 @@ class BinaryTree
         
         return $current;
 
+    }
+
+    public function preOrderTraverse()
+    {
+        $arr = [];
+        $this->preOrderRecursive($this->root,$arr);
+        var_dump($arr);
+    }
+
+    private function preOrderRecursive(?TreeNode $current,array &$arr)
+    {
+        if($current === null)
+            return;
+
+        $arr[] = $current->data;
+        $this->preOrderRecursive($current->left,$arr);
+        $this->preOrderRecursive($current->right,$arr);
     }
 
 }
