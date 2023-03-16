@@ -143,7 +143,38 @@ class BinaryTree
         $this->inOrderRecursive($current->right,$arr);
     }
 
-    
+    public function getHeight($item) 
+    {
+        $current = $this->getNode($item,$this->root);
+        return $this->heightRecursive($current);
+    }
+
+    private function getNode($item,?TreeNode $current)
+    {
+        if($current === null)
+            return null;
+        if($current->data === $item) {
+            return $current;
+        }
+        $left = $this->getNode($item,$current->left);
+        $right = $this->getNode($item,$current->right);
+
+        if($left === null && $right === null)
+            return null;
+        elseif($left === null)
+            return $right;
+        else
+            return $left;
+    }
+
+    private function heightRecursive(?TreeNode $current)
+    {
+        if($current === null)
+            return -1;
+        $leftHeight = $this->heightRecursive($current->left);
+        $rightHeight = $this->heightRecursive($current->right);
+        return 1+max($leftHeight,$rightHeight);
+    }
 
 }
 //date_default_timezone_set('Africa/Cairo');
@@ -155,9 +186,11 @@ $tree->add(10);
 $tree->add(6);
 $tree->add(9);
 $tree->add(11);
-$tree->preOrderTraverse();
-echo '<br>';
-$tree->inOrderTraverse();
+$tree->add(13);
+echo $tree->getHeight(0);
+//$tree->preOrderTraverse();
+//echo '<br>';
+//$tree->inOrderTraverse();
 //$tree->delete(10);
 //var_dump($tree->root);
 
