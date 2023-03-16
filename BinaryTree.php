@@ -136,8 +136,8 @@ $tree->add(10);
 $tree->add(6);
 $tree->add(9);
 $tree->add(11);
-
-$tree->delete(10);
-var_dump($tree->root);
+$tree->preOrderTraverse();
+//$tree->delete(10);
+//var_dump($tree->root);
 
 ?>
